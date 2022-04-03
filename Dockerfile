@@ -1,5 +1,5 @@
-# debian:10-slim
-ARG BASE_IMAGE=debian@sha256:7f5c2603ccccb7fa4fc934bad5494ee9f47a5708ed0233f5cd9200fe616002ad
+# debian:11-slim
+ARG BASE_IMAGE=debian@sha256:82da53aa627b9d5032a1e57903356b8f34d613a5bc1e07ae5e9149bd88fa3128
 FROM $BASE_IMAGE
 
 # See the 'docker' directory for arm32v7/arm64v8
