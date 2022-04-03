@@ -18,6 +18,8 @@ apt-get install -yqq --no-install-recommends python3 libusb-1.0-0 \
 # on a Rust compiler, see https://github.com/pyca/cryptography/issues/5771)
 HOME=/root pip3 install --upgrade pip==22.0.4
 
+s6-setuidgid specter pip3 install --user wheel
+
 # babel is in Specter's requirements.txt, but has to be pre-installed manually because
 # 'setup.py' imports it.
 s6-setuidgid specter pip3 install --user babel==2.9.1
