@@ -47,4 +47,4 @@ ln -s /data/specter /important/
 # Cleanup
 HOME=/root pip3 uninstall -y pip
 apt-get purge -y python3-dev python3-pip python3-setuptools build-essential libudev-dev libusb-1.0-0-dev python3-wheel libffi-dev libssl-dev
-rm -r ~/specter-desktop-* ~/.cache /root/.cache/pip
+rm -r ~/.cache /root/.cache/pip
