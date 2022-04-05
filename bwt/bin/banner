@@ -11,8 +11,8 @@ cat << EZ
 
              ▀█▀▀█ █▀▀█▀
               █▀ ▄  ▄▀ ▄
-             ▀▀▀▀▀ ▀▀▀▀▀
+             ▀▀▀▀▀ ▀▀▀▀▀ fork by SergioGlorias
 $banner$([ "$1" == "-s" ] && \
-  echo -e '\n\n SUPPORT DEV: 🚀  bc1qmuagsjvq0lh3admnafk0qnlql0vvxv08au9l2d ／ https://btcpay.shesek.info')
+  echo -e '\n\n GITHUB: 🚀  https://github.com/SergioGlorias/eznode')
 
 EZ
