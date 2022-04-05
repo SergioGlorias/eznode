@@ -4,9 +4,9 @@ source /ez/util.sh
 set -x
 
 # Install s6-overlay
-wget -qO /tmp/s6-overlay.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-$S6_OVERLAY_ARCH.tar.gz
-echo "$S6_OVERLAY_SHA256  /tmp/s6-overlay.tar.gz" | sha256sum -c -
-tar xzf /tmp/s6-overlay.tar.gz -C /
+wget -qO /tmp/s6-overlay.tar.xz https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-$S6_OVERLAY_ARCH.tar.xz
+echo "$S6_OVERLAY_SHA256  /tmp/s6-overlay.tar.xz" | sha256sum -c -
+tar xzf /tmp/s6-overlay.tar.xz -C /
 
 # Install utility for managing the s6 services
 mv service /ez/bin/
