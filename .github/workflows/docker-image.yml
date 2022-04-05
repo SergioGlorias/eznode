@@ -27,11 +27,9 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build image
-      run: ./docker/build-arch.sh arm64 -t ${{ github.repository }}:arm64-beta
-    - name: Tag ghcr.io
-      run: docker tag ${{ github.repository }}:arm64-beta ghcr.io/${{ github.repository }}:arm64-beta
+      run: ./docker/build-arch.sh arm64 -t ghcr.io/sergioglorias/eznode:arm64-beta
     - name: Push image
-      run: docker push ghcr.io/${{ github.repository }}:arm64-beta
+      run: docker push ghcr.io/sergioglorias/eznode:arm64-beta
       
   amd64:
   
@@ -50,8 +48,6 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build image
-      run: ./docker/build-arch.sh amd64 -t ${{ github.repository }}:amd64-beta
-    - name: Tag ghcr.io
-      run: docker tag ${{ github.repository }}:amd64-beta ghcr.io/${{ github.repository }}:amd64-beta
+      run: ./docker/build-arch.sh amd64 -t ghcr.io/sergioglorias/eznode:amd64-beta
     - name: Push image
-      run: docker push ghcr.io/${{ github.repository }}:amd64-beta
+      run: docker push ghcr.io/sergioglorias/eznode:amd64-beta
