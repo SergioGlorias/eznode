@@ -7,7 +7,10 @@
 [ "$PRUNE" -ge 550 ] && [ "$PRUNE" -le 1000 ] || error fastsync TRUSTED_FASTSYNC must be used with a PRUNE value between 550 and 1000
 
 if [ -d /data/bitcoin/blocks ]; then
-  info fastsync Found existing datadir at /data/bitcoin. Delete it to force a re-download of the fastsync snapshot.
+  # Warn that the TRUSTED_FASTSYNC flag is ignored if the bitcoind datadir
+  # already exists but we haven't completed a successful fast-sync.
+  [ -f /data/fastsync/.done ] ||
+    warn fastsync Found existing datadir at /data/bitcoin, skipping fast-sync. Delete the directory to force a re-sync.
   return 0
 fi
 
@@ -21,13 +24,14 @@ dest=/data/fastsync/$latest_snapshot
 
 # Download
 info fastsync Downloading $age days old snapshot from https://prunednode.today/$latest_snapshot.zip
+progress_type=$([ -n "$IS_TTY" ] && echo bar || echo dot:mega)
 pushd /data/fastsync > /dev/null # cd into a writable directory so wget/axel can write their log/state files
 if [ -n "$FASTSYNC_PARALLEL" ]; then
   axel --num-connections $FASTSYNC_PARALLEL -o $dest.zip -a https://prunednode.today/$latest_snapshot.zip >&2
 else
-  wget --continue -q -P /data/fastsync/ https://prunednode.today/$latest_snapshot.zip --show-progress
+  wget --continue -q -P /data/fastsync/ https://prunednode.today/$latest_snapshot.zip --show-progress --progress=$progress_type
 fi
-wget -q -P /data/fastsync/ https://prunednode.today/$latest_snapshot.signed.txt --show-progress
+wget -q -P /data/fastsync/ https://prunednode.today/$latest_snapshot.signed.txt --show-progress --progress=$progress_type
 popd > /dev/null
 
 # Verify
@@ -44,5 +48,6 @@ unzip -n $dest.zip -x bitcoin.conf -d /data/bitcoin/ \
   | pv -pte -l -s $(unzip -Z -1 $dest.zip | wc -l) > /dev/null
 
 [ -n "$FASTSYNC_KEEP_SNAPSHOT" ] || rm $dest.zip
+touch /data/fastsync/.done
 
 info fastsync Ready to go!

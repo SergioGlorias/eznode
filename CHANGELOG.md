@@ -2,11 +2,35 @@
 
 ## Unreleased
 
-- Update Bitcoin Core to v0.21.1
+- New installation wizard TUI! 🧙
 
-- Update Specter Desktop to v1.5.0
+- Support for Podman and Rootless containers
 
-- Update btc-rpc-explorer to v3.1.1
+- Switch nginx/dropbear to use EC keys (RSA keys generated with prior versions still work)
+
+Package updates:
+
+- ₿ Bitcoin Core v22.0
+
+- 👻 Specter Desktop v1.8.0
+
+- 🗺️ BTC RPC Explorer v3.3.0
+
+Fixes:
+
+- Fix networking mode detection in Podman
+
+- bwt: Fix log output buffering
+
+- nginx: Fix relative redirect URLs
+
+- letsencrypt: Fix auto-restart to update nginx's config
+
+- specter: Fix build in emulated ARM32v7 environments
+
+- bitcoin: Disable pruning by default for testnet/signet
+
+- Fix entrypoint script warning when running with pre-existing container storage
 
 ## 0.1.0 - 2021-03-25
 

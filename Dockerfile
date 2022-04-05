@@ -5,7 +5,7 @@ FROM $BASE_IMAGE
 # See the 'docker' directory for arm32v7/arm64v8
 
 # Build settings
-ARG INSTALL=bitcoind,bwt,btc-rpc-explorer,specter,tor,nginx,letsencrypt,dropbear
+ARG INSTALL=bitcoind,bwt,btc-rpc-explorer,specter,tor,nginx,letsencrypt,dropbear,wizard
 ARG DEV
 
 ARG BWT_VERSION=0.2.4
@@ -20,7 +20,7 @@ ARG BTCEXP_VERSION=3.3.0
 ARG BTCEXP_SHA256=52f6f559310df04450f819983c1d78223f3ed48e3ec520242201557adf063e20
 
 ARG SPECTER_VERSION=1.9.2
-ARG SPECTER_SHA256=711648c9b82ddc166ef927830fb2534fbe6bbdf4c1b2449bfd0edabf67d6e6e7
+ARG SPECTER_SHA256=421b8e6891a3d07707e117b3e2f7f0ef6367554072bf99bb6ad8ee3d7d5726d1
 
 ARG S6_OVERLAY_VERSION=2.2.0.3
 ARG S6_OVERLAY_ARCH=amd64

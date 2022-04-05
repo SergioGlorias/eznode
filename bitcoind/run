@@ -32,11 +32,13 @@ if [ "$EUID" -eq 0 ]; then
   exec s6-setuidgid bitcoin $0
 fi
 
-# Configuration options. A config file can also be mounted into /data/bitcoin/bitcoin.conf
-[ "$NETWORK" == "regtest" ] && : ${PRUNE:=0} ${TXINDEX:=1}
-: ${PRUNE:=550}
-: ${BITCOIND_LISTEN:=0}
 ! bool_opt "$BITCOIND_TOR" || bool_opt "$TOR" || error bitcoind BITCOIND_TOR requires TOR to be enabled
+
+# Configuration options. A config file can also be mounted into /data/bitcoin/bitcoin.conf
+[ $NETWORK == bitcoin ] && : ${PRUNE:=550}
+[ $NETWORK == regtest ] && : ${TXINDEX:=1}
+: ${PRUNE:=0}
+: ${BITCOIND_LISTEN:=0}
 
 BITCOIND_OPTS="$BITCOIND_OPTS -datadir=$BITCOIND_DIR -chain=$BITCOIND_CHAIN
   -prune="$PRUNE" -listen="$BITCOIND_LISTEN" -maxtipage=10800
@@ -67,13 +69,13 @@ mkdir -p $BITCOIND_NETDIR/wallets
 ( (
   # Wait for the RPC to warm up and test connectivity
   pidfile /tmp/bitcoind-rpcwait.pid \
-    bitcoin-cli -rpcwait uptime > /dev/null # TODO timeout
+    bitcoin-cli -rpcwait uptime > /dev/null # TODO timeout https://github.com/bitcoin/bitcoin/pull/21056
   info bitcoind The Bitcoin Core RPC is ready
   chmod g+r $BITCOIND_NETDIR/.cookie
 
   if [ "$NETWORK" == "regtest" ] && [ "$(bitcoin-cli getblockcount)" -eq 0 ]; then
     info bitcoind Mining some regtest blocks
-    bitcoin-cli createwallet miner > /dev/null
+    bitcoin-cli loadwallet miner &> /dev/null || bitcoin-cli createwallet miner > /dev/null
     bitcoin-cli generatetoaddress 101 $(bitcoin-cli -rpcwallet=miner getnewaddress) > /dev/null
   fi
 
