@@ -10,9 +10,9 @@ banner=$(wget -T1 -qO - --user="." --password="$(printcontenv AUTH_TOKEN)" --aut
 cat << EZ
 
              ▀█▀▀█ █▀▀█▀
-              █▀ ▄  ▄▀ ▄
+              █▀ ▄  ▄▀ ▄ updated
              ▀▀▀▀▀ ▀▀▀▀▀ fork by SergioGlorias
 $banner$([ "$1" == "-s" ] && \
-  echo -e '\n\n GITHUB: 🚀  https://github.com/SergioGlorias/eznode')
+  echo -e '\n\n     FORK GITHUB: https://github.com/SergioGlorias/eznode \n ORIGINAL GITHUB: https://github.com/ez-org/eznode')
 
 EZ
