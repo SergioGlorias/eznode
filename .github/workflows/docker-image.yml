@@ -28,6 +28,8 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build image
       run: ./docker/build-arch.sh arm64 -t ghcr.io/sergioglorias/eznode:arm64-beta
+    - name: Test Image
+      run: ./test.sh ghcr.io/sergioglorias/eznode:arm64-beta
     - name: Push image
       run: docker push ghcr.io/sergioglorias/eznode:arm64-beta
       
@@ -49,5 +51,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build image
       run: ./docker/build-arch.sh amd64 -t ghcr.io/sergioglorias/eznode:amd64-beta
+    - name: Test Image
+      run: ./test.sh ghcr.io/sergioglorias/eznode:amd64-beta
     - name: Push image
       run: docker push ghcr.io/sergioglorias/eznode:amd64-beta
