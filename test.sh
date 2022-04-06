@@ -30,7 +30,7 @@ sleep 3
 echo ok
 
 echo Testing specter...
-echo "$(curl -fsS eztest:25441/about)" | grep -q '<img src="/static/img/checkbox-tick.svg" width="30px">'
+echo "$(curl -fsS eztest:25441/welcome/about)" | grep -q '<img src="/static/img/checkbox-tick.svg" width="30px">'
 # checkbox-tick indicates a successful connection to bitcoin core
 echo ok
 
