@@ -51,7 +51,7 @@ Some other common options include: `AUTH_TOKEN=<password>` to enable [authentica
 To setup eznode using the [🧙 installation wizard](https://ezno.de/getting-started#installation-wizard), run:
 
 ```bash
-docker run -it --rm --name ez -v ~/eznode:/data eznode/eznode wizard
+docker run -it --rm --name ez -v ~/eznode:/data sergioglorias/eznode wizard
 ```
 
 Signature verification instructions [are available here](https://ezno.de/signed-images).
