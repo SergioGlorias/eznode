@@ -5,7 +5,7 @@ source /ez/util.sh
 export LANG=C.UTF-8
 export DIALOGRC=/ez/wizard/dialogrc
 
-DOCKER_NAME=eznode/eznode:next # TODO
+DOCKER_NAME=sergioglorias/eznode # TODO
 BACKTITLE='eznode installation wizard'
 DIALOG_WIDTH=78
 
