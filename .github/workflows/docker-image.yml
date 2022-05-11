@@ -50,4 +50,4 @@ jobs:
     - name: Build image
       run: ./docker/build-arch.sh amd64 -t ghcr.io/sergioglorias/eznode:amd64-knots-beta
     - name: Push image
-      run: docker push ghcr.io/sergioglorias/eznode:arm64-knots-beta
+      run: docker push ghcr.io/sergioglorias/eznode:amd64-knots-beta
