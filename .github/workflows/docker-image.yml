@@ -2,7 +2,7 @@ name: Build Images
 
 on:
   push:
-    branches: [ main ]
+    branches: [ knots ]
 
 jobs:
 
@@ -27,9 +27,9 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build image
-      run: ./docker/build-arch.sh arm64 -t ghcr.io/sergioglorias/eznode:arm64-beta
+      run: ./docker/build-arch.sh arm64 -t ghcr.io/sergioglorias/eznode:arm64-knots-beta
     - name: Push image
-      run: docker push ghcr.io/sergioglorias/eznode:arm64-beta
+      run: docker push ghcr.io/sergioglorias/eznode:arm64-knots-beta
       
   amd64:
   
@@ -48,8 +48,6 @@ jobs:
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build image
-      run: ./docker/build-arch.sh amd64 -t ghcr.io/sergioglorias/eznode:amd64-beta
-    #- name: Test Image
-    #  run: ./test.sh ghcr.io/sergioglorias/eznode:amd64-beta
+      run: ./docker/build-arch.sh amd64 -t ghcr.io/sergioglorias/eznode:amd64-knots-beta
     - name: Push image
-      run: docker push ghcr.io/sergioglorias/eznode:amd64-beta
+      run: docker push ghcr.io/sergioglorias/eznode:arm64-knots-beta
